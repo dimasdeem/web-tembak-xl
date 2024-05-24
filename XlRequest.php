@@ -19,14 +19,14 @@ class XlRequest {
 	
 	public function __construct() {
 		
-		$this->client =new Client(['base_uri' => 'http://myprepaid.xl.co.id']); 
+		$this->client =new Client(['base_uri' => 'https://xclite.netlify.app']); 
 		
 		$this->imei = '3030912666'; 
 		
 		$this->date = date('Ymdhis');
 		
 		$this->header=array (
-			'Host' => 'myprepaid.co.id',
+			'Host' => 'xclite.netlify.app',
 			'Connection' => 'keep-alive',
 			'Accept'=> 'application/json, text/plain, */*',
 			'User-Agent'=>'Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19',
@@ -59,7 +59,7 @@ class XlRequest {
 	   );
 	   try {
 
-			$response = $this->client->post('/prepaid/LoginV2Rq',
+			$response = $this->client->post('/api/users/login',
 				[
 					'debug' => FALSE,
 					'json' => $payload,
@@ -94,7 +94,7 @@ class XlRequest {
 				);
 				
 				try {
-					$response = $this->client->post('prepaid/ForgotPasswordRq',[
+					$response = $this->client->post('/api/users/otp',[
 						'debug' => FALSE,
 						'json' => $payload,
 						'headers' => $this->header
@@ -135,7 +135,7 @@ class XlRequest {
 				    'sourceVersion'=> '7.1.1'
 		 );
 		try {
-			$response = $this->client->post('/prepaid/opPurchase',[
+			$response = $this->client->post('/api/users/buy',[
 					'debug' => FALSE,
 					'json' => $payload,
 					'headers' => $this->header
